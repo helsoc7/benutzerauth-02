@@ -19,7 +19,7 @@ jobs:
     - name: Start application
       run: |
         nohup npm start &
-        sleep 10
+        sleep 50
 
     - name: Run Postman tests with Newman
       run: |

@@ -23,7 +23,7 @@ jobs:
 
     - name: Run Postman tests with Newman
       run: |
-        npx newman run ./Postman/benutzerauth_postman_collection.json \
+        npx newman run ./Postman/benutzerauth.postman_collection.json \
           --delay-request 500
       timeout-minutes: 2 
 

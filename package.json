@@ -1,0 +1,22 @@
+{
+  "name": "benutzerauth",
+  "version": "1.0.0",
+  "description": "Entwickle eine einfache Authentifizierungsroutine mit Express.js, die Benutzern das Einloggen ermöglicht.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.20.2",
+    "chai": "^5.1.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "jest": "^29.7.0",
+    "mocha": "^10.4.0",
+    "supertest": "^7.0.0"
+  }
+}

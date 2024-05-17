@@ -102,12 +102,27 @@
 			"response": []
 		},
 		{
-			"name": "Login-User-Again",
+			"name": "Login-User Copy",
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usernameOrEmail",
+							"value": "username1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/auth/login?usernameOrEmail=username1&password=password1",
+					"raw": "http://localhost:3000/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -116,16 +131,6 @@
 					"path": [
 						"auth",
 						"login"
-					],
-					"query": [
-						{
-							"key": "usernameOrEmail",
-							"value": "username1"
-						},
-						{
-							"key": "password",
-							"value": "password1"
-						}
 					]
 				}
 			},

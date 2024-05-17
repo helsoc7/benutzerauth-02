@@ -20,12 +20,12 @@ jobs:
       run: |
         nohup npm start &
         sleep 50
+    - name: Check if server is running
+      run: curl -I http://localhost:3000 
 
-    - name: Run Postman tests with Newman
-      run: |
-        npx newman run ./Postman/benutzerauth.postman_collection.json \
-          --delay-request 500
-      timeout-minutes: 2 
+    - uses: matt-ball/newman-action@master
+      with:
+        collection: ./Postman/benutzerauth.postman_collection.json
 
     - name: Stop application
       run: |

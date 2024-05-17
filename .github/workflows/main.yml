@@ -5,7 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
     steps:
     - uses: actions/checkout@v4
 
@@ -19,7 +23,7 @@ jobs:
     - name: Start application
       run: |
         nohup npm start &
-        sleep 50
+        sleep 10
     - name: Check if server is running
       run: curl -I http://localhost:3000 
 

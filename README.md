@@ -166,3 +166,44 @@ POST http://localhost:3000/auth/logout (Achtung: Postman speichert automatisch S
 GET http://localhost:3000/auth/protected (Achtung: Wir sind nach dieser Reihenfolge nicht mehr angemeldet, sondern müssen uns erneut anmelden)
 5. Postman Collection exportieren
 Wir exportieren die Postman Collection und pushen sie in das Repo.
+6. Newman in der Pipeline konfigurieren
+```
+name: Benutzerauthentifizierung Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+
+    - name: Install dependencies
+      run: npm install
+
+
+    - name: Start application
+      run: |
+        nohup npm start &
+        sleep 10
+    - name: Check if server is running
+      run: curl -I http://localhost:3000 
+
+    - uses: matt-ball/newman-action@master
+      with:
+        collection: ./Postman/benutzerauth.postman_collection.json
+
+    - name: Stop application
+      run: |
+        pkill node 
+```
+Hier haben wir die MongoDB-Instanz in der Pipeline konfiguriert. D.h. wir haben einen Service für MongoDB hinzugefügt. 
+Zudem verwenden wir die `newman-action` um die Postman-Tests in der Pipeline auszuführen.

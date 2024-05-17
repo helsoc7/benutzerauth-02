@@ -15,5 +15,18 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm test
+
+    - name: Start application
+      run: |
+        nohup npm start &
+        sleep 10
+
+    - name: Run Postman tests with Newman
+      run: |
+        npx newman run postman/benutzerauth_postman_collection.json \
+          --delay-request 500
+      timeout-minutes: 2 
+
+    - name: Stop application
+      run: |
+        pkill node 
